@@ -19,6 +19,7 @@ ESC :x
 # for Nano 
 Ctrl+O , Ctrl+X
 ```
+* https://gist.github.com/dogrocker/1efb8fd9427779c827058f873b94df95
 - To switch between shells
 ```bash
 bash 
