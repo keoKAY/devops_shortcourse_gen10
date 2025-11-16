@@ -6,6 +6,7 @@ vagrant up
 vagrant status # check status vms
 vagrant ssh # login from your terminal 
 vagrant ssh-config 
+
 vagrant reload  
 vagrant halt 
 vagrant destroy -f   
