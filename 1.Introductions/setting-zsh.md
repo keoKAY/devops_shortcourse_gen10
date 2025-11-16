@@ -27,3 +27,16 @@ zsh
 exec zsh 
 echo $SHELL
 ```
+
+
+```bash
+cat filename 
+more | less filename 
+head filename
+tail filename 
+
+
+# Move filename or rename 
+mv 
+
+```
