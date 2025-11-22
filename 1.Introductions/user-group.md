@@ -110,6 +110,6 @@ sudo chown -R $USER:$USER  folder
 # rw -w = r-- 
 # r =rwx = rwx 
 
-# to change group of folder or file 
+# to change group of folder or file 🔥
 sudo chgrp group folder or file 
 ```
