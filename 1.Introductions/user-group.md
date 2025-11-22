@@ -111,5 +111,5 @@ sudo chown -R $USER:$USER  folder
 # r =rwx = rwx 
 
 # to change group of folder or file 🔥
-sudo chgrp group folder or file 
+sudo chgrp group <folder or file>
 ```
