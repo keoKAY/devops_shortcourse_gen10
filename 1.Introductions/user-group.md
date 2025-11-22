@@ -69,3 +69,47 @@ groupdel
 
 
 ```
+### Permission and ownership 
+```bash
+ls -a 
+ll 
+ls -lrt 
+
+# to create a symbolic link 
+ln -s target-to-link  folder-to-use-file 
+ln -s ~/basic-server/link-test.cpp ~/test-folder
+
+# using absolute mode 
+4=read
+2=write
+1=run(execute)
+# 0-7 
+chmod 777 file or folder 
+chmod -R 777 folder/*
+
+# running the script to test 
+./demo.sh
+echo "Hello world from demo.sh" 
+
+bash demo.sh # no need add 'x' for permission 
+
+
+#  Change the ownership of files or folders 
+sudo chown user:group file or folder 
+sudo chown $USER:$USER  file or folder 
+sudo chown -R $USER:$USER  folder 
+
+
+
+# working with symbolic 
+# + add addition permission 
+# - remove 
+# = override 
+
+# rw +x = rwx 
+# rw -w = r-- 
+# r =rwx = rwx 
+
+# to change group of folder or file 
+sudo chgrp group folder or file 
+```
