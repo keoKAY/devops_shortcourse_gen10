@@ -1,0 +1,27 @@
+
+#!/bin/bash
+# This is Justfile
+
+run-fun: 
+    cd ../functions-demo && ls -lrt 
+    cd ../functions-demo && bash main_program.sh 
+infra option : 
+    #!/bin/bash
+    case {{option}} in 
+    "up")
+    echo "Option is : {{option}}" 
+    echo "Setting up infrastructure for our service" 
+    date 
+    pwd 
+    whoami 
+    ;; 
+    "down")
+    echo "Destorying the infrastructure" 
+    docker -v 
+    pwd
+    ;; 
+    *)
+    echo "Usage: just infra up|down ! Try again 👍" 
+    ;;
+    esac
+

@@ -28,9 +28,8 @@ case $option in
     result=$(echo "$num1 / $num2"| bc)
     echo "Result is : $result"
     ;; 
-    
+
     *)
     echo " ❌ Invalid Option!! Please choose (+,-,*,/)"
     ;; 
-esac 
 echo "Thank you for using the script 👍"
