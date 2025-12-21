@@ -69,3 +69,40 @@ sudo apt install python3-certbot-nginx -y
 sudo certbot --nginx 
 ```
 5. Configure certbot
+
+
+***
+### Setup docker registry inside nexus oss 
+
+docker register 
+1. blob store -> folder store the images 
+ex. docker-blob 
+    helm-blob 
+
+
+```bash 
+docker login -u admin nexus-cr.anajak-khmer.site 
+# enter your password 
+
+docker tags nginx:latest \
+    nexus-cr.anajak-khmer.site/demo-nginx:v1.0.0 
+
+docker push nexus-cr.anajak-khmer.site/demo-nginx:v1.0.0
+```
+
+
+### COnfigure user and privileges 
+- Privilege for **readonly** in docker-hosted repo 
+```bash
+nx-repository-view-docker-docker-hosted-browse
+nx-repository-view-docker-docker-hosted-read
+```
+- Priviledge for **fullaccess** with the dockerhosted repo 
+```bash
+nx-repository-view-docker-docker-group-browse
+nx-repository-view-docker-docker-group-read
+nx-repository-view-docker-docker-group-add
+nx-repository-view-docker-docker-group-edit
+nx-repository-view-docker-docker-group-delete
+
+```
