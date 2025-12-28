@@ -1,0 +1,28 @@
+--- 
+- name: Deploy spring fileupload svc 
+  hosts: node2
+  become: true 
+  tasks: 
+    - name: Update cache 
+      apt: 
+        update_cache: true 
+    - name: Install docker compose if it doesn't exist 
+      apt: 
+        name: docker-compose 
+        state: present 
+    - name: Start docker compose config 
+      community.docker.docker_compose_v2: 
+        project_name: spring-project
+        definition: 
+          version: "3.9"
+          services: 
+            spring-svc: 
+              container_name: spring-cont-fileupload
+              image: 69966/springgradleimg:1.1.1
+              ports:
+                - 8080:8080 
+              volumes:
+                - "/mnt/nfs/shared:/app/src/main/resources/images"
+              #state: present 
+
+
