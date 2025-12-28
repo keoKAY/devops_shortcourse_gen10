@@ -15,12 +15,14 @@
       copy: 
         src: ./sources/docker-compose.yml
         dest: /opt/docker-compose.yml 
+# docker compose as extension     
     - name: Using docker compose module 
       community.docker.docker_compose_v2: 
         project_src: /opt
         project_name: myapp
         state: present 
       when: true 
+# docker compose as binary 
     - name: Run docker compose up -d 
       command: docker-compose up -d 
       args: 

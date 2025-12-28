@@ -1,0 +1,2 @@
+machine_type: 
+  name: k8s_worker

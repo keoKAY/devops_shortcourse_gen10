@@ -1,0 +1,23 @@
+---
+- name: Demo variables 
+  hosts: node3
+  # vars: 
+  #   database: 
+  #     user: james
+  #     name: postgres 
+  #     pass: postgres123 
+  vars_files:
+    - ../vars/db-secret.yaml
+  tasks: 
+    - name: Showing the variable name 
+      debug: 
+        msg: "db_name:{{ database.name }}, db_user: {{database.user}} , db_pass: {{ database.pass }}"
+
+    - name: Showing host_vars values 
+      debug: 
+        msg: " {{user_info.username }} , {{ user_info.password }}"
+      ignore_errors: true 
+
+    - name: Showing group_var values 
+      debug: 
+        msg: "{{machine_type.name}}"

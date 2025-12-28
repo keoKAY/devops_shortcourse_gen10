@@ -1,0 +1,6 @@
+# main playbook for import demo 
+- name: Install common services 
+  import_playbook: install-common-service.yaml
+
+- name: Deploy service 
+  import_playbook: deploy-svc.yaml

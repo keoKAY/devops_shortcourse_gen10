@@ -1,0 +1,16 @@
+# apt update && apt upgrade 
+- name: Update apt cache 
+  apt: 
+    update_cache: true 
+- name: Uninstall nginx 
+  apt: 
+    name: nginx 
+    state: absent 
+- name: Uninstall neofetch 
+  apt: 
+    name: neofetch 
+    state: absent 
+- name: Uninstall docker compose 
+  apt: 
+    name: docker-compose 
+    state: absent 

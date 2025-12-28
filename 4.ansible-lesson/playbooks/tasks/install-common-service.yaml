@@ -1,0 +1,16 @@
+# apt update && apt upgrade 
+- name: Update apt cache 
+  apt: 
+    update_cache: true 
+- name: Install nginx 
+  apt: 
+    name: nginx 
+    state: present 
+- name: Install neofetch 
+  apt: 
+    name: neofetch 
+    state: present 
+- name: Install docker compose 
+  apt: 
+    name: docker-compose 
+    state: present 
