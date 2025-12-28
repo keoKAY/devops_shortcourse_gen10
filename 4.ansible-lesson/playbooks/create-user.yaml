@@ -1,0 +1,15 @@
+- name: Create CD users 
+  hosts: workers 
+  become: true 
+  vars: 
+    user_username: robin
+    user_password: batmanpassword
+  tasks: 
+  - name: Create user 
+    user: 
+      name: "{{ user_username }}"
+      #password: "{{ user_password | password_hash('sha512') }}"
+      password: "{{ user_password | community.general.password_hash('sha512') }}"
+      shell: /bin/bash
+      createhome: yes 
+      groups: sudo 

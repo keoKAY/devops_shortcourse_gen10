@@ -1,0 +1,7 @@
+services: 
+  reactjs-svc: 
+    image: 69966/earthdx:78
+    container_name: reactjs-cont 
+    ports: 
+      - 3000:80 
+    

@@ -1,0 +1,29 @@
+- name: Deploy reactjs service 
+  # hosts: node3,node1
+  hosts: node2
+  become: true 
+  tasks: 
+    - name: update apt cache 
+      apt: 
+        update_cache: true 
+    # docker compose vs docker-compose 
+    - name: Install docker compose 
+      apt: 
+        name: docker-compose
+        state: present 
+    - name: Copy docker-compose from controller 
+      copy: 
+        src: ./sources/docker-compose.yml
+        dest: /opt/docker-compose.yml 
+    - name: Using docker compose module 
+      community.docker.docker_compose_v2: 
+        project_src: /opt
+        project_name: myapp
+        state: present 
+      when: true 
+    - name: Run docker compose up -d 
+      command: docker-compose up -d 
+      args: 
+        chdir: /opt
+      when: false 
+      

@@ -1,0 +1,12 @@
+---
+- name: Installing nginx on master
+  hosts: masters
+  become: true 
+  tasks: 
+    - name: Update apt cache 
+      apt: 
+        update_cache: yes 
+    - name: Install nginx 
+      apt: 
+        name: nginx 
+        state: present 
