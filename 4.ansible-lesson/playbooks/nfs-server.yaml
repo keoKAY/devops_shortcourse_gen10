@@ -1,0 +1,43 @@
+--- 
+- name: Setup NFS Server 
+  hosts: nfs_servers
+  become: true 
+  vars: 
+    nfs: 
+      export_dir: /srv/nfs/shared
+      client_ip1: 192.168.56.11
+      client_ip2: 192.168.56.19
+  tasks: 
+    - name: update apt cache 
+      apt: 
+        update_cache: yes 
+    - name: install nfs-server 
+      apt: 
+        name: nfs-kernel-server
+        state: present 
+    - name: Create directory if it doesn't exist 
+      file: 
+        path: "{{nfs.export_dir}}"
+        state: directory
+        owner: nobody
+        group: nogroup 
+        mode: "0777"
+    - name: Create export config file 1
+      lineinfile: 
+        path: /etc/exports
+        line: "{{ nfs.export_dir }}  {{nfs.client_ip1}}(rw,sync,no_subtree_check,no_root_squash)"
+        create: yes 
+        state: present 
+    - name: Create export config file 2
+      lineinfile: 
+        path: /etc/exports
+        line: "{{ nfs.export_dir }}  {{nfs.client_ip2}}(rw,sync,no_subtree_check,no_root_squash)"
+        create: yes 
+        state: present 
+    - name: Apply configuration 
+      command: exportfs -ra 
+    - name: Restart nfs-server 
+      systemd: 
+        name: nfs-kernel-server
+        enabled: true 
+        state: restarted 

@@ -1,0 +1,36 @@
+---
+- name: Setup nfs clients 
+  hosts: nfs_clients 
+  become: true 
+  vars: 
+    nfs: 
+      server_ip: 192.168.56.10 
+      export_dir: /srv/nfs/shared
+      mount_dir: /mnt/nfs/shared
+  tasks: 
+    - name: Update apt cache 
+      apt: 
+        update_cache: true 
+    - name: Install nfs common 
+      apt: 
+        name: nfs-common 
+        state: present 
+    - name: Create local mount point 
+      file: 
+        path: "{{nfs.mount_dir}}"
+        state: directory 
+        mode: "0777"
+    - name: Mount to NFS server 
+      mount: 
+        src: "{{nfs.server_ip}}:{{nfs.export_dir}}"
+        path: "{{nfs.mount_dir}}"
+        fstype: nfs
+        opts: default,_netdev
+        state: mounted 
+    - name: Persist the mount point 
+      mount: 
+        src: "{{nfs.server_ip}}:{{nfs.export_dir}}"
+        path: "{{nfs.mount_dir}}"
+        fstype: nfs
+        opts: default,_netdev
+        state: present  

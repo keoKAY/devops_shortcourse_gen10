@@ -1,0 +1,8 @@
+#!/bin/bash
+
+ping-all: 
+    ansible -i inventory.ini all -m ping 
+nfs-server: 
+    ansible-playbook -i inventory.ini playbooks/nfs-server.yaml 
+nfs-client: 
+    ansible-playbook -i inventory.ini playbooks/nfs-client.yaml
