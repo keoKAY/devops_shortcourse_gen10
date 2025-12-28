@@ -1,6 +1,7 @@
 ---
 - name: Demo variables 
   hosts: node3
+  gather_facts: true  
   # vars: 
   #   database: 
   #     user: james
@@ -9,6 +10,9 @@
   vars_files:
     - ../vars/db-secret.yaml
   tasks: 
+    - name: Showing the IP Address of machines 
+      debug: 
+        msg: "This IP is : {{ansible_default_ipv4.address }}"
     - name: Showing the variable name 
       debug: 
         msg: "db_name:{{ database.name }}, db_user: {{database.user}} , db_pass: {{ database.pass }}"
