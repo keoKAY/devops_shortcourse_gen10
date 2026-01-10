@@ -1,0 +1,5 @@
+
+create-vm: 
+    ansible-playbook -i inventory.ini playbooks/create-gcp-vm.yaml 
+destroy-vm: 
+    ansible-playbook -i inventory.ini playbooks/remove-gcp-vm.yaml
