@@ -57,6 +57,7 @@ gcloud config list
 gcloud projects list 
 glcoud compute zones list
 
+# to logout 
 gcloud auth revoke --all
 gcloud auth application-default revoke
 ```

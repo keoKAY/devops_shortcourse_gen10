@@ -1,0 +1,8 @@
+---
+- name: Create workers playbooks 
+  hosts: localhost 
+  vars_files:
+    - ../vars/machines.yaml 
+  tasks: 
+    - name: Create workers machines
+      import_tasks: ./tasks/create-workers-instances.yaml

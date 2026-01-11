@@ -1,0 +1,63 @@
+# tasks for only create the master instance 
+
+- name: Loop to show machines specs
+  debug: 
+    msg: |
+      Machine Name: {{ item.name }}
+  loop: "{{ machines_info }}"
+  when: true 
+
+- name: Slurp pub key from local machine
+  slurp:
+    src: "{{ ssh_pubkey_path }}"
+  register: ssh_pubkey
+  when: true 
+
+- name: Create GCP instance
+  google.cloud.gcp_compute_instance:
+    name: "{{ item.name }}"
+    machine_type: "{{ item.machine_type }}"
+    zone: "{{ item.zone }}"
+    project: "{{google_project_id}}"
+    auth_kind: application
+    #auth_kind: "serviceaccount"
+    #service_account_file: "{{ service_account_path }}"
+    state: present # absent -> delete instance 
+    metadata:
+      ssh-keys: "{{agent_user}}:{{ ssh_pubkey['content'] | b64decode }}"
+
+    disks:
+      - auto_delete: true
+        boot: true
+        initialize_params:
+          source_image: "{{ item.image }}"
+          disk_size_gb: "{{ item.disk_size }}"
+          disk_type: "{{ item.disk_type }}"
+    network_interfaces:
+      - network:
+          selfLink: "projects/{{google_project_id}}/global/networks/default"
+        access_configs:
+          - name: External NAT
+            type: ONE_TO_ONE_NAT
+    tags:
+      items:
+        - http-server
+        - https-server
+  environment: 
+    GOOGLE_APPLICATION_CREDENTIALS: "{{ adc_file }}" 
+  loop: "{{ machines_info }}" 
+
+  register: gcp_workers_instances
+  # when: false 
+  when: item.name not in ["master02","master03"] 
+# Error in getting the first values  results 
+- name: Register the existing inventory file 
+  slurp:
+    src: "../inventory.ini"
+  register: existing_inventory 
+- name: Update our inventory 
+  template: 
+    src: "../templates/workers-inventory.j2"
+    dest: "../inventory.ini"
+  vars:
+    existing_content: "{{ existing_inventory['content'] | b64decode }}"
