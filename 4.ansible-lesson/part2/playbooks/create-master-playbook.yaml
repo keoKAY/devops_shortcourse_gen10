@@ -1,6 +1,7 @@
 ---
 - name: Create masters playbooks 
-  hosts: localhost 
+  hosts: localhost
+  become: true  
   vars_files:
     - ../vars/machines.yaml 
   tasks: 

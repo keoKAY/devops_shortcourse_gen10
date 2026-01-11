@@ -1,5 +1,13 @@
 # tasks for only create the master instance 
-
+- name: install Pip
+  apt: 
+    name: python3-pip
+    state: present 
+- name: Ensure the package are installed
+  pip:
+    name:
+      - requests
+      - google-auth
 - name: Loop to show machines specs
   debug: 
     msg: |

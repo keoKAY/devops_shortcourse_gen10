@@ -1,5 +1,5 @@
 #service_account_path: "/home/kk/credentials/service-account.json"
-adc_file: "/home/kk/.config/gcloud/application_default_credentials.json"
+adc_file: "/home/kk/devops_shortcourse_gen10/4.ansible-lesson/part2/credentials/application_default_credentials.json"
 google_project_id: "project-2196034a-008b-495b-b87"
 ssh_pubkey_path: "/home/kk/.ssh/id_rsa.pub"
 agent_user: "kk"
