@@ -42,7 +42,16 @@ export  GOOGLE_APPLICATION_CREDENTIALS=$PWD/ansible-wif.json
 
 ```
 - Some common commands 
-```bash 
+```bash
+# install gcloud cli 
+sudo apt-get update
+sudo apt-get install apt-transport-https ca-certificates gnupg curl
+sudo apt-get update && sudo apt-get install google-cloud-cli
+
+
+gcloud auth login 
+gcloudauth application-default login 
+
 gcloud auth list 
 gcloud config list 
 gcloud projects list 

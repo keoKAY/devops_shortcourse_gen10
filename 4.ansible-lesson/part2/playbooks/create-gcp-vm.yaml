@@ -6,7 +6,7 @@
      google_project_id: "project-2196034a-008b-495b-b87"
      #service_account_path: "/home/kk/Documents/devops_related/devops_gen10/4.ansible-lesson/part2/credentials/serviceaccount.json"
      ssh_public_key_path: "/home/kk/.ssh/id_rsa.pub"
-     wif_json_path: "/home/kk/Documents/devops_related/devops_gen10/4.ansible-lesson/part2/ansible-wif.json"
+    #  wif_json_path: "/home/kk/Documents/devops_related/devops_gen10/4.ansible-lesson/part2/ansible-wif.json"
      adc_file: "/home/kk/.config/gcloud/application_default_credentials.json"
   tasks:
   - name: Slurp the local public key
