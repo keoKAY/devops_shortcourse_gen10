@@ -3,10 +3,11 @@
   hosts: localhost 
   vars: 
      machine_name: "first-gcp-vm"
-     #google_project_id: "project-2196034a-008b-495b-b87"
-     google_project_id: "marine-compass-482307-c9"
-     service_account_path: "/home/kk/Documents/devops_related/devops_gen10/4.ansible-lesson/part2/credentials/serviceaccount.json"
+     google_project_id: "project-2196034a-008b-495b-b87"
+     #service_account_path: "/home/kk/Documents/devops_related/devops_gen10/4.ansible-lesson/part2/credentials/serviceaccount.json"
      ssh_public_key_path: "/home/kk/.ssh/id_rsa.pub"
+     wif_json_path: "/home/kk/Documents/devops_related/devops_gen10/4.ansible-lesson/part2/ansible-wif.json"
+     adc_file: "/home/kk/.config/gcloud/application_default_credentials.json"
   tasks:
   - name: Slurp the local public key
     slurp: 
@@ -27,8 +28,9 @@
       machine_type: "e2-medium"
       zone: "us-central1-a"
       project: "{{google_project_id}}"
-      auth_kind: "serviceaccount"
-      service_account_file: "{{ service_account_path }}"
+      auth_kind: application
+      #auth_kind: "serviceaccount"
+      #service_account_file: "{{ service_account_path }}"
       state: present
       metadata:
         ssh-keys: "kk:{{ ssh_pub_key['content'] | b64decode }}"
@@ -54,7 +56,10 @@
           - http-server
           - https-server
     register: gcp_instance
-    when: true 
+    when: true
+    environment: 
+      GOOGLE_APPLICATION_CREDENTIALS: "{{ adc_file }}"
+      GOOGLE_EXTERNAL_ACCOUNT_ALLOW_EXECUTABLES: "1"
   - name: Write gcp_instance into json file
     copy:
       content: "{{ gcp_instance }}"
