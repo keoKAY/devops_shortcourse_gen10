@@ -17,4 +17,9 @@ kubectl edit svc kubernete-dashboard -n kube-system
 https://34.87.102.228:32048
 
 ```
+- create serviceaccount 
+- create clusterrolebinding 
 - Generating the token for dashboard 
+
+## Initial ingress setup 
+## Initial Argocd setup 
