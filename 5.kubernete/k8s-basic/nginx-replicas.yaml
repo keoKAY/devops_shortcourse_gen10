@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-rs
+  labels:
+    app: nginx-app 
+spec: 
+
+# ensure there 4 pods running 
+  replicas: 4
+  selector:
+    matchLabels:
+      app: nginx-app 
+  template:
+    metadata:
+      labels:
+        app: nginx-app
+    spec:
+      containers:
+        - name: nginx-cont 
+          image: nginx:latest 
+
+
+# kubectl api-resources 

@@ -1,0 +1,25 @@
+# Reactjs service 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-blue
+  labels: 
+    app: myapp 
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+
+  template:
+    metadata:
+      labels:
+        app: myapp
+
+    spec:
+      containers:
+      - name: reactjs-cont 
+        image: 69966/earthdx:78
+        ports:
+        - containerPort: 80

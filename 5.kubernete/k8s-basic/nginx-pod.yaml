@@ -19,3 +19,7 @@ spec:
 # kubectl get pod -o wide 
 # kubectl describe pod/my-nginx-pod
 # kubectl logs pod/my-nginx-pod
+
+
+# imperative approach 
+# kubectl run my-second-nginx --image=nginx:latest 

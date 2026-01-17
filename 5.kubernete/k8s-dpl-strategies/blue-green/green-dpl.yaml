@@ -1,0 +1,26 @@
+# nginx 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-green
+  labels: 
+    app: myapp
+    replicas: green 
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: myapp
+      replicas: green 
+  template:
+    metadata:
+      labels:
+        app: myapp
+        replicas: green 
+    spec:
+      containers:
+      - name: nginx-cont 
+        image: nginx:latest 
+
+        ports:
+        - containerPort: 80
