@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reactjs-dpl
+spec:
+  selector:
+    matchLabels:
+      app: reactjs-app
+  template:
+    metadata:
+      labels:
+        app: reactjs-app 
+    spec:
+      containers:
+      - name: reactjs-cont 
+        image: 69966/earthdx:78
+        ports:
+        - containerPort: 80

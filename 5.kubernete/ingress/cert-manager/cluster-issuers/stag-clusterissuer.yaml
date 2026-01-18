@@ -1,0 +1,22 @@
+
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-stag # Name the ClusterIssuer
+  namespace: cert-manager 
+spec:
+  acme:
+    # The ACME production server URL
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: lyvanna544@gmail.com 
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: letsencrypt-stag-account-key
+    # Enable the HTTP-01 challenge handler
+    solvers:
+    - http01:
+        ingress:
+          # Specify the ingress class used to solve challenges
+          class: nginx
+          # Optionally, specify the name of the Ingress Controller (if needed)
+          # name: nginx-ingress-controller

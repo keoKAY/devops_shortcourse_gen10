@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: path-based-ingress
+  #labels:
+  #  app.kubernetes.io/name: myingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: "nginx"
+  rules:
+  - host: nginx-k8s.anajak-khmer.site 
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/nginx"
+        backend:
+          service:
+            name: nginx-svc 
+            port: 
+              number: 80 
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: reactjs-svc 
+            port: 
+              number: 80 

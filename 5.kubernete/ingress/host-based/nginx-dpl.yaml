@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-dpl
+spec:
+  selector:
+    matchLabels:
+      app: nginx-dpl
+  template:
+    metadata:
+      labels:
+        app: nginx-dpl
+    spec:
+      containers:
+      - name: nginx-dpl
+        image: nginx:latest 
+        ports:
+        - containerPort: 80

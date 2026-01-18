@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-nginx 
+  annotations: 
+    # cert-manager.io/cluster-issuer: "letsencrypt-stag"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/ingressClassName: "nginx"
+spec:
+  ingressClassName: "nginx"
+  tls: 
+    - hosts: 
+      - nginx-k8s.anajak-khmer.site
+      - reactjs-k8s.anajak-khmer.site
+      secretName: nginx-k8s-tls 
+  rules:
+  - host: nginx-k8s.anajak-khmer.site 
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: nginx-svc 
+            port: 
+              number: 80 

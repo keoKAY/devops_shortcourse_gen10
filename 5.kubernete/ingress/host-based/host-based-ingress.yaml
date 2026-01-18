@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: host-based-ingress
+  #labels:
+  #  app.kubernetes.io/name: myingress
+spec:
+  ingressClassName: "nginx"
+  rules:
+  - host: nginx-k8s.anajak-khmer.site 
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: nginx-svc 
+            port: 
+              number: 80 
+  - host: reactjs-k8s.anajak-khmer.site 
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: reactjs-svc 
+            port: 
+              number: 80 
