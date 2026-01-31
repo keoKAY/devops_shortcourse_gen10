@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-dpl
+spec:
+  selector:
+    matchLabels:
+      app: postgres-app
+  template:
+    metadata:
+      labels:
+        app: postgres-app
+    spec:
+      containers:
+      - name: postgres-app
+        image: postgres:latest 
+        ports:
+        - containerPort: 5432
+        env: 
+          - name: POSTGRES_USER
+            value: admin_user
+          - name: POSTGRES_PASSWORD 
+            value: "helloworld"
