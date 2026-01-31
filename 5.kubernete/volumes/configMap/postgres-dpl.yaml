@@ -17,7 +17,16 @@ spec:
         ports:
         - containerPort: 5432
         env: 
-          - name: POSTGRES_USER
-            value: admin_user
-          - name: POSTGRES_PASSWORD 
-            value: "helloworld"
+        - name: POSTGRES_USER
+          valueFrom: 
+            configMapKeyRef: 
+              name: postgres-configmap-v2
+              key: PG_USER 
+        - name: POSTGRES_PASSWORD
+          valueFrom: 
+            configMapKeyRef: 
+              name: postgres-configmap-v2
+              key: PG_PASS
+        # envFrom:
+        #   - configMapRef: 
+        #       name: postgres-configmap  

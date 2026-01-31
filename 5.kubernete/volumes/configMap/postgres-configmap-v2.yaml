@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-configmap-v2 
+data:
+  PG_USER: admin_user 
+  PG_PASS: HELLOWORLD 
