@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-index-cm 
+data:
+  index.html: >-
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Customized Nginx Page</title>
+    </head>
+    <body>
+        <h1> Welcome to Devops 10 </h1>
+        <p> You seeing the customized page of nginx </p>
+    </body>
+    </html>
+
