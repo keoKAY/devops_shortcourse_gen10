@@ -16,10 +16,17 @@ kubectl describe cm <name>
 Imperative Style 
 Declarative Style (YAML File approach )
 ```bash 
+
+kubectl delete secret postgres-secret 
+
 kubectl create secret generic postgres-secret \
   --from-literal=POSTGRES_USER=admin-user \
   --from-literal=POSTGRES_PASSWORD=supersecret
 
+
+# to edit specific secret in kubernetes
+kubectl edit secret secret-name 
+# after done editing, type :wq! -> to save and quit 
 ```
 ```yaml 
 env:
