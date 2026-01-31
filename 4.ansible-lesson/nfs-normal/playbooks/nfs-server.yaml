@@ -1,0 +1,8 @@
+- name: NFS server setup 
+  hosts: nfs-servers
+  become: true
+  tasks: 
+    - name: Running NFS Server Tasks 
+      include_tasks: tasks/nfs-server-tasks.yaml
+    # - name: Running NFS Client tasks 
+    #   include_tasks: tasks/nfs-client-tasks.yaml 

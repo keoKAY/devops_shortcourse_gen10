@@ -62,3 +62,6 @@ kubectl create secret docker-registry regcred \
   --docker-email=my@email.com
 
 ```
+
+
+## Working with NFS 

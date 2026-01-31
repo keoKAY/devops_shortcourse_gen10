@@ -1,0 +1,34 @@
+- name: Update apt cache 
+  apt: 
+    update_cache: yes
+    cache_valid_time: 3600
+- name: Install NFS Server 
+  apt: 
+    name: nfs-kernel-server
+    state: present 
+- name: Create Shared Directory 
+  file: 
+    path: "{{ nfs_server.mount_path}}"
+    state: directory 
+    group: "nogroup"
+    owner: "nobody"
+    mode: "0777"
+
+- name: Configure the NFS Server exports 
+  blockinfile: 
+    path: /etc/exports
+    block: |
+      {{ nfs_server.mount_path }} {{ export_entries }}
+    create: yes 
+    state: present 
+  vars: 
+    export_entries: >-
+      {{ nfs_client.ips | map('regex_replace', '^(.*)$', '\g<1>(rw,sync,no_subtree_check,no_root_squash)') | join(' ') }}
+
+- name: Applying the configuration 
+  command: exportfs -ra 
+- name: Restart the nfs server 
+  systemd: 
+    name: nfs-kernel-server
+    state: restarted 
+    enabled: true 
