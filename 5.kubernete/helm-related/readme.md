@@ -18,7 +18,7 @@ helm rollback nginx-release <revision-number>
 
 
 ```
-- Working with Nexus Helm Repository 
+- ### Working with Nexus Helm Repository on Nexus  
 ```bash
 helm package nginx-chart 
 helm install nginx-release nginx-chart-0.1.0.tgz  
