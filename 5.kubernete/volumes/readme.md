@@ -61,7 +61,19 @@ kubectl create secret docker-registry regcred \
   --docker-password=mypassword \
   --docker-email=my@email.com
 
+
+kubectl create secret docker-registry regcred \
+  --docker-server=https://nexus-oss-cr.anajak-khmer.site \
+  --docker-username=admin \
+  --docker-password=<your-password> \
+  --docker-email=my@email.com
+
 ```
+- if you use dockerhub, gitlab registry, ghcr, rather than using actual password, we should use the token specifically for the registry instead 
+
+url : nexus-oss-cr.anajak-khmer.site/nginx:alpine
+docker pull nexus-oss-cr.anajak-khmer.site/nginx:alpine
 
 
-## Working with NFS 
+
+
