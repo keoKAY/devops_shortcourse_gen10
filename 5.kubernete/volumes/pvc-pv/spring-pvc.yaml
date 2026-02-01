@@ -1,0 +1,32 @@
+# create both PV and PVC here 
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: spring-nfs-pv
+spec:
+  capacity:
+    storage: 10Gi
+  # volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs-sharing
+  # mountOptions:
+  #   - hard
+  #   - nfsvers=4.1
+  nfs:
+    path: /srv/nfs_shared
+    server: 10.148.0.2
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: spring-nfs-pvc
+spec:
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: nfs-sharing
+  #volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
