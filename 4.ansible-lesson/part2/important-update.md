@@ -50,7 +50,7 @@ sudo apt-get update && sudo apt-get install google-cloud-cli
 
 
 gcloud auth login 
-gcloudauth application-default login 
+gcloud auth application-default login 
 
 gcloud auth list 
 gcloud config list 

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: fastapi-nfs-pvc-external
+spec:
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: nfs-client
+  #volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany

@@ -11,16 +11,6 @@ spec:
       labels:
         app: spring-app
     spec:
-      # using nodeSelector to ensure that it will run on Node1 (easier to see the folder and files )
-      # nodeSelector: 
-      #   kubernetes.io/hostname: "node1"
-      # affinity:
-      #   nodeAffinity:
-      #     requiredDuringSchedulingIgnoredDuringExecution:
-      #       nodeSelectorTerms:
-      #         - matchExpressions:
-      #             - key: node-role.kubernetes.io/control-plane
-      #               operator: DoesNotExist
       containers:
       - name: spring-cont 
         image: 69966/springgradleimg:1.1.1
@@ -32,4 +22,4 @@ spec:
       volumes: 
         - name: my-spring-vol 
           persistentVolumeClaim: 
-            claimName: spring-nfs-pvc
+            claimName: spring-nfs-pvc-external
