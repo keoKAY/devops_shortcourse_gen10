@@ -25,13 +25,31 @@ helm install nginx-release nginx-chart-0.1.0.tgz
 
 # upload a zip , compressed file into helm repository 
 # to upload your chart to nexus using the nexus api 
-curl -u admin:<your-password> https://nexus-oss.anajak-khmer.site/repository/helm-hosted/ \
+curl -u admin:<your-password> \
+     https://nexus-oss.anajak-khmer.site/repository/helm-hosted/ \
     --upload-file nginx-chart-0.1.0.tgz
 
-helm repo add nexus-selfhosted https://nexus-oss.anajak-khmer.site/repository/helm-hosted --username admin --password <your-password>
+helm repo add nexus-selfhosted \
+    https://nexus-oss.anajak-khmer.site/repository/helm-hosted --username admin --password <your-password>
 
 helm repo list 
 # to install a new release from your repository 
-helm install nexus-selfhosted nexus-selfhosted/nginx-chart
+helm install nexus-selfhosted \
+    nexus-selfhosted/nginx-chart
+
+```
+- Another approach 
+```bash 
+# helm registry login https://nexus-oss.anajak-khmer.site/repository/helm-hosted
+helm plugin install https://github.com/chartmuseum/helm-push
+helm plugin list
+helm repo add nexus \
+  http://<nexus-url>/repository/helm-hosted/
+helm package my-chart
+helm push my-chart-0.1.0.tgz nexus
+helm search repo nexus
+helm repo update
+helm search repo my-chart
+
 
 ```
