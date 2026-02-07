@@ -1,0 +1,7 @@
+render-stag: 
+     helm template customized-chart \
+        --values=customized-chart/values-stag.yaml 
+
+render-prod: 
+    helm template customized-chart \
+        --values=customized-chart/values-prod.yaml 

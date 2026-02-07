@@ -1,0 +1,7 @@
+appName:
+  app: nginx-prod
+replicas: 4
+container:
+  name: nginx-cont
+  image: nginx:1.22.1
+  port: 80
