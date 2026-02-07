@@ -4,4 +4,11 @@ replicas: 2
 container:
   name: nginx-cont
   image: nginx:1.22.1
-  port: 80
+  port: 80 
+  env: 
+    - name: POSTGRES_USER
+      value: postgres-stag
+    - name: POSTGRES_PASSWORD
+      value: postgres_123
+    - name: POSTGRES_DATABASE
+      value: stag_db

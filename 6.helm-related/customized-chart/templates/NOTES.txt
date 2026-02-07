@@ -1,0 +1,4 @@
+Congratulation for releasing a new release 
+
+kubectl get svc 
+curl 10.233.53.194

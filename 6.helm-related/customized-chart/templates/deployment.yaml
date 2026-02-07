@@ -19,6 +19,11 @@ spec:
         ports:
         - containerPort: {{ .port }}
       {{- end }}
+        env: 
+      {{- range .Values.container.env }}
+          - name: {{ .name }}
+            value: {{ .value }}
+      {{- end }}
         resources:
           limits:
             memory: "128Mi"

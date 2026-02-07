@@ -1,3 +1,4 @@
+#!/bin/bash
 render-stag: 
      helm template customized-chart \
         --values=customized-chart/values-stag.yaml 
@@ -5,3 +6,10 @@ render-stag:
 render-prod: 
     helm template customized-chart \
         --values=customized-chart/values-prod.yaml 
+
+release-stag: 
+    helm upgrade my-stag-app customized-chart \
+        --values=customized-chart/values-stag.yaml --install
+release-prod: 
+    helm upgrade my-prod-app  customized-chart \
+        --values=customized-chart/values-prod.yaml --install
