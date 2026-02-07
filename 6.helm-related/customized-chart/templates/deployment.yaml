@@ -4,13 +4,7 @@ metadata:
   name: {{ .Values.appName.app }}-dpl
 spec:
   replicas: {{ .Values.replicas }}
-  selector:
-    matchLabels:
-      app: {{ .Values.appName.app }}
-  template:
-    metadata:
-      labels:
-        app: {{ .Values.appName.app }}
+  {{- include "dpl-selector" . }}  
     spec:
       affinity: 
       {{- toYaml .Values.affinity  | nindent 7 }}
@@ -37,7 +31,4 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
-      {{- if .Values.container.volumes }}
-      volumes: 
-        {{- toYaml .Values.container.volumes | nindent 8 }}
-      {{- end  }}
+    {{- include "volume-config" . }}
