@@ -12,19 +12,32 @@ spec:
       labels:
         app: {{ .Values.appName.app }}
     spec:
+      affinity: 
+      {{- toYaml .Values.affinity  | nindent 7 }}
+
       containers:
       {{- with .Values.container }}
       - name: {{ .name }}
         image: {{ .image }}
         ports:
         - containerPort: {{ .port }}
-      {{- end }}
+        {{- if .volumeMounts }}
+        volumeMounts: 
+          {{- toYaml .volumeMounts | nindent 8 }}
+        {{- end  }}
         env: 
-      {{- range .Values.container.env }}
+      {{- range .env }}
           - name: {{ .name }}
             value: {{ .value }}
+      {{- end }}
+        
+        
       {{- end }}
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
+      {{- if .Values.container.volumes }}
+      volumes: 
+        {{- toYaml .Values.container.volumes | nindent 8 }}
+      {{- end  }}
