@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+ name: frontend-app
+ namespace: argocd
+spec:
+ project: default
+ source:
+   repoURL: https://github.com/sexymanalive/first-argocd-git-repo.git
+   targetRevision: HEAD
+   path: ./reactjs-helm
+
+ # which cluster you planning to deploy !   
+ destination:
+   namespace: default
+   server: https://kubernetes.default.svc
+ syncPolicy:
+   automated:
+     prune: true
+     selfHeal: true
+   syncOptions:
+     - Validate=false
