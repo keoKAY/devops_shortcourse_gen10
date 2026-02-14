@@ -1,4 +1,7 @@
 ## Taint node 
+
+Mark node to recieive or not recieve tasks assignment 
+( Pod will need node to run , but not on the nodes that we tainted )
 ```bash
 kubectl get pod -o wide 
 
@@ -19,7 +22,7 @@ kubectl taint node node1 node-role.kubernetes.io/control-plane-
 kubectl taint node node5 service=disabled:NoSchedule
 
 # untaint the worker 
-kubectl taint node node5 service=disabled:-NoSchedule
+kubectl taint node node5 service-
 
 
 ```

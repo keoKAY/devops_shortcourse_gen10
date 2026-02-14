@@ -1,0 +1,18 @@
+frontend:
+  image: lyvanna544/reactjs-product-sample-dev10:v1.0.1
+  replicaCount: 2
+  service:
+    port: 80
+
+backend:
+  image: lyvanna544/spring-product-sample-dev10:v1.0.0
+  replicaCount: 2
+  service:
+    port: 8080
+
+postgres:
+  image: postgres:15
+  database: postgres
+  username: postgres
+  password: password
+  storage: 5Gi
