@@ -13,6 +13,10 @@ helm install monitor-stack-release \
 kubectl --namespace default \
     get pods \
     -l "release=monitor-stack-release"
+
+kubectl get secret -n default monitor-stack-release-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+
+kubectl get secret -n default monitor-stack-release-grafana -o jsonpath="{.data.admin-password}" | base64 --decode 
 ```
 
 ### Configure the domain name for the prometheus and grafana 
@@ -30,5 +34,10 @@ helm upgrade \
     monitor-stack-release \
     prometheus-community/kube-prometheus-stack \
     -f values.yaml \
-    -n default
+    -n default --install
+
+
+# forward-port in order to access the services 
+kubectl port-forward \
+    svc/monitor-stack-release-kube-prometheus 9090:9090
 ```

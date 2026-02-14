@@ -10,21 +10,21 @@ spec:
   ingressClassName: "nginx"
   tls: 
     - hosts: 
-      - prometheus.devnerd.store
-      - grafana.devnerd.store
+      #- prometheus.devnerd.store
+      - grafana.anajak-khmer.site
       secretName: kube-stack-new-tls
   rules: 
-    - host: prometheus.devnerd.store
-      http:
-        paths: 
-          - pathType: Prefix 
-            path: "/"
-            backend: 
-              service: 
-                name: monitor-stack-release-kube-prometheus
-                port: 
-                  number: 9090
-    - host: grafana.devnerd.store
+    # - host: prometheus.devnerd.store
+    #   http:
+    #     paths: 
+    #       - pathType: Prefix 
+    #         path: "/"
+    #         backend: 
+    #           service: 
+    #             name: monitor-stack-release-kube-prometheus
+    #             port: 
+    #               number: 9090
+    - host: grafana.anajak-khmer.site
       http:
         paths: 
           - pathType: Prefix 
