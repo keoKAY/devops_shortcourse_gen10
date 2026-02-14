@@ -41,3 +41,13 @@ helm upgrade \
 kubectl port-forward \
     svc/monitor-stack-release-kube-prometheus 9090:9090
 ```
+
+
+More topics to research
+
+- Role-based access control 
+- Setup HA from scratch , load balancer ( HAProxy + Keepalived , MetalLB )
+- Kubernetes for Admins
+- Install Rancher 
+- Kubenetes with Services Mesh (Istio)
+- Kuebrnetes with Microserives 
