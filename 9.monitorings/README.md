@@ -43,8 +43,7 @@ kubectl port-forward \
 ```
 
 
-More topics to research
-
+## More topics to research
 - Role-based access control 
 - Setup HA from scratch , load balancer ( HAProxy + Keepalived , MetalLB )
 - Kubernetes for Admins
